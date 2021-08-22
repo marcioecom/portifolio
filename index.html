@@ -5,30 +5,80 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portifólio</title>
+  <link rel="stylesheet" href="style.css">
+  <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto:wght@400;500&display=swap"
+    rel="stylesheet">
 </head>
 <body>
-  <h1>Meu Portifólio</h1>
-  <p>
-    Márcio Mendonça de Oliveira Júnior
+  <div class="navbar">
+    <div class="container-navbar">
+      <a class="navbar-link" href="#">Márcio Júnior</a>
+      <a href="http://github.com/marcioecom" target="_blank">
+        <i class='bx bxl-github github-icon'></i>
+      </a>
+      
+    </div>
+  </div>
+  <div class="container">
+    <div class="header">
+      <div class="header-content">
+        <h1 class="title">Hello,<br> I'm Márcio</h1>
+        <h2 class="subtitle">
+          Fullstack Developer
+        </h2>
+        <p>
+          I'm a Fullstack developer that loves to create new solutions.
+        </p>
+      </div>
+      <div>
+        <img class="profile-picture" src="assets/eu.jpg" alt="Uma foto minha">
+      </div>
+    </div>
     <br>
-    Desenvolvedor Web
-  </p>
-  <img src="eu.jpg" alt="Uma foto minha" width="100px">
-  <p>
-    Indice
-    <ol>
-      <li>Coisas que eu gosto</li>
-    </ol>
-  </p>
-  <p>Sou de <em>Palmas</em> no Tocantins!</p>
-  <ul>
-    <li>Javascript</li>
-    <li>ReactJS</li>
-    <li>NodeJS</li>
-    <li>Postgresql</li>
-    <li><strong>Inglês</strong></li>
-  </ul>
+  </div>
 
-  <p>Eu gosto muito desse <a href="https://eborges.org/" target="_blank">blog</a></p>
+  <div class="about-me">
+    <div class="text-center">
+      <h2 class="about-title">About me</h2>
+      <p>Introduction</p>
+    </div>
+    <div class="about-main">
+      <div class="img">
+        <img class="about-img" src="assets/programming.svg" alt="person programming">
+      </div>
+      <div class="about-text">
+        <p class="about-content">
+          I'am a Fullstack Javascript/Typescript Developer with proficiency 
+          on the React/Node Stack. I'm always looking to stay updated using 
+          all there are of new libs and frameworks.
+        </p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="skills">
+    <div class="skills-top text-center">
+      <h2 class="skills-title">
+        Skills
+      </h2>
+      <p>Hardskills</p>
+    </div>
+    <div class="skills-img">
+      <img src="assets/js.svg" alt="Javascript logo">
+      <img src="assets/ts.svg" alt="Typescript logo">
+      <img src="assets/react.svg" alt="React logo">
+      <img src="assets/node.svg" alt="Nodejs logo">
+    </div>
+  </div>
+
+  
+  <footer class="text-center">
+    <p class="footer-p">
+      Made with ❤️ by <a class="footer-link" href="http://instagram.com/marciojunior14" target="_blank">Márcio Júnior</a>
+      <i class='bx bxl-instagram'></i>
+    </p>
+  </footer>
+  
 </body>
 </html>
