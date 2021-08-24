@@ -160,6 +160,7 @@ i {
 }
 
 .skills-img {
+  width: auto;
   margin: 0 auto;
   display: flex;
   justify-content: center;
