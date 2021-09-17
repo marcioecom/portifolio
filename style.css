@@ -76,7 +76,7 @@ i {
   margin-bottom: 50px;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-around;
   max-width: 800px;
 }
 
