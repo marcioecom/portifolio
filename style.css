@@ -164,10 +164,11 @@ i {
   margin: 0 auto;
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .skills-img img {
-  margin: 0 15px;
+  margin: 10px;
   max-width: 100px;
 }
 
