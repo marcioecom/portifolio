@@ -35,7 +35,7 @@ i {
 
 .container {
   height: auto;
-  max-width: 700px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 0 30px;
   margin-top: 150px;
@@ -73,13 +73,13 @@ i {
 }
 
 .header {
+  margin: 0 auto;
   height: auto;
   margin-bottom: 50px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
   max-width: 600px;
-  margin-top: 100px;
 }
 
 .title {
@@ -187,11 +187,11 @@ footer {
 
 .footer-link {
   text-decoration: none;
-  color: var(--green);
+  color: #E53E3E;
 }
 
 .footer-link:hover {
-  color: #04aa6d;
+  color: #FADADA;
 }
 
 .bxl-instagram {
