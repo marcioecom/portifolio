@@ -1,35 +1,47 @@
 <!doctype html>
 <html lang="pt-br">
 <head>
+    <!-- VideoJs  -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.14.3/video-js.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.14.3/video.min.js"></script>
+    <!-- AWS IVS -->
     <script src="https://player.live-video.net/1.6.1/amazon-ivs-videojs-tech.min.js"></script>
+    <!-- Player Style -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sh20raj/SopPlayer@main/CatSu/catsu.min.css"/> 
+    <link rel='stylesheet' href='https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css' />
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Questrial' />
+    <script src="https://cdn.jsdelivr.net/gh/sh20raj/SopPlayer@main/CatSu/catsu.min.js"></script>
+
+    <title>Streaming</title>
+
+    <style>
+      body {
+        margin: 0;
+      }
+  
+      .video-container {
+        max-width: 640px;
+        height: auto;
+      }
+
+      video {
+        width: 100%;
+        height: auto;
+      }
+    </style>
 </head>
 
 <body>
-  <div class="video-container">
-    <video 
-      id="amazon-ivs-videojs"
-      class="video-js vjs-16-9 vjs-big-play-centered"
-      controls autoplay playsinline
-    ></video> <!-- vjs-4-3 -->
+  <div>
+    <div class="video-container video-js-responsive-container vjs-hd">
+      <video 
+        id="my-video"
+        class="video-js vjs-16-9 vjs-fluid vjs-layout-medium vjs-big-play-centered"
+        controls autoplay playsinline
+      ></video> <!--  vjs-4-3 -->
+    </div>
   </div>
-  <style>
-    body {
-      margin: 0;
-    }
 
-    .video-container {
-      max-width: 640px;
-      height: auto;
-      margin: 0 auto;
-    }
-
-    video {
-      width: 100%;
-      height: auto;
-    }
-  </style>
   <script>
     (function play() {
       // Get playback URL from Amazon IVS API
@@ -39,7 +51,7 @@
       registerIVSTech(videojs);
 
       // Initialize player
-      var player = videojs('amazon-ivs-videojs', {
+      var player = videojs('my-video', {
         techOrder: ["AmazonIVS"],
       }, () => {
         console.log('Player is ready to use!');
