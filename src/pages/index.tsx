@@ -55,7 +55,7 @@ const Home: NextPage = () => {
             Skills
           </Heading>
 
-          <Flex justify="space-between" mt={{ base: 4, md: 10 }} wrap={"wrap"}>
+          <Flex justify="space-evenly" mt={{ base: 4, md: 10 }} wrap={"wrap"}>
             { skills.map((skill) => (
               <VStack key={skill.id} align="center" m={4}>
                 <Text color={skillTextColor} fontSize={"lg"}>{skill.name}</Text>

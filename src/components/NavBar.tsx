@@ -29,7 +29,7 @@ function NavBar() {
       w="100%"
       zIndex={1}
       backdropFilter="blur(10px)"
-      bg={useColorModeValue("rgba(244, 247, 254, 0.2)", "rgba(11,20,55,0.5)")}
+      bg={useColorModeValue("rgba(244, 247, 254, 0.2)", "rgba(26, 32, 44, 0.2)")}
     >
       <Container maxW="container.lg">
         <Flex align={"center"} justify={"space-between"}>
