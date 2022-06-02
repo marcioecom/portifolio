@@ -68,6 +68,8 @@ const Home: NextPage = () => {
           </Flex>
         </Box>
       </Container>
+
+      <Footer />
     </Layout>
   )
 }
