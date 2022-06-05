@@ -51,7 +51,7 @@ const Home: NextPage = () => {
           </Flex>
         </Flex>
 
-        <Box mt={32}>
+        <Box mt={32} id="Skills">
           <Heading size={"2xl"} textAlign="center" bgClip='text' bgGradient="linear(to-l, #01BAEF,#20BF55)">
             Skills
           </Heading>
@@ -69,7 +69,7 @@ const Home: NextPage = () => {
           </Flex>
         </Box>
 
-        <Box mt={32}>
+        <Box mt={32} id="Projetos">
           <Heading size={"2xl"} textAlign="center" bgClip='text' bgGradient="linear(to-l, #01BAEF,#20BF55)">
             Projetos
           </Heading>
