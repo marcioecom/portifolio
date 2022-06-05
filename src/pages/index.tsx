@@ -5,6 +5,7 @@ import NextImage from 'next/image';
 import Layout from '../components/Layout'
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
+import Projects from '../components/Projects';
 
 import Illustration from '../assets/illustration.png'
 import JsImg from '../assets/js.svg'
@@ -66,6 +67,16 @@ const Home: NextPage = () => {
               </VStack>
             ))}
           </Flex>
+        </Box>
+
+        <Box mt={32}>
+          <Heading size={"2xl"} textAlign="center" bgClip='text' bgGradient="linear(to-l, #01BAEF,#20BF55)">
+            Projetos
+          </Heading>
+
+          <Box mt={{ base: 4, md: 10 }}>
+            <Projects />
+          </Box>
         </Box>
       </Container>
 
