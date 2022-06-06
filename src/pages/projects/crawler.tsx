@@ -25,6 +25,7 @@ type Job = {
   description: string;
   tags: string[];
   offers: string;
+  url: string;
   interested: string;
   seenAt: Date;
   timeLeft: number;
@@ -69,7 +70,7 @@ const Crawler: NextPage = () => {
 
         { jobs ? jobs.map((job) => (
           <Box key={job.id} marginY={8}>
-            <Heading size={"md"} as={Link} href="https://github.com/marcioecom/go-webscraper">
+            <Heading size={"md"} as={Link} href={job.url}>
               {job.title}
             </Heading>
             <Text>Propostas: {job.offers} | Interessados: {job.interested}</Text>
