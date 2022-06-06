@@ -66,6 +66,7 @@ export default function Projects() {
                 _hover={{
                   bgGradient: 'linear(to-r, teal.500, green.500)',
                 }}
+                color={"white"}
               >
                 Ver Demo
               </Button>
