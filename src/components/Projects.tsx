@@ -5,6 +5,8 @@ import {
   AccordionItem,
   AccordionPanel,
   Box,
+  Button,
+  Center,
   Divider,
   Flex,
   Link,
@@ -45,11 +47,9 @@ export default function Projects() {
 
             <Stack direction={{ base: "row", md: "column"}}>
               <Text flex={{ base: 1, md: 0 }} color={techTextColor}>Github</Text>
-              <Link as={LinkNext} href="https://github.com/marcioecom/go-webscraper">
-                <Text as={Link} color="blue.400">
-                  Código do projeto
-                </Text>
-              </Link>
+              <Text as={Link} href="https://github.com/marcioecom/go-webscraper" color="blue.400">
+                Código do projeto
+              </Text>
             </Stack>
 
             <Stack direction={{ base: "row", md: "column"}}>
@@ -59,6 +59,18 @@ export default function Projects() {
               </Text>
             </Stack>
           </Flex>
+          <Center mt={6}>
+            <LinkNext href="/projects/crawler">
+              <Button
+                bgGradient="linear(to-l, #01BAEF,#20BF55)"
+                _hover={{
+                  bgGradient: 'linear(to-r, teal.500, green.500)',
+                }}
+              >
+                Ver Demo
+              </Button>
+            </LinkNext>
+          </Center>
         </AccordionPanel>
       </AccordionItem>
 
@@ -88,17 +100,15 @@ export default function Projects() {
 
             <Stack direction={{ base: "row", md: "column"}}>
               <Text flex={{ base: 1, md: 0 }} color={techTextColor}>Github</Text>
-              <Link as={LinkNext} href="https://github.com/marcioecom/goly">
-                <Text as={Link} color="blue.400">
-                  Código do projeto
-                </Text>
-              </Link>
+              <Text as={Link} href="https://github.com/marcioecom/goly" color="blue.400">
+                Código do projeto
+              </Text>
             </Stack>
 
             <Stack direction={{ base: "row", md: "column"}}>
               <Text flex={{ base: 1, md: 0 }} color={techTextColor}>Descrição</Text>
               <Text maxW={{ base: "xs" }} textAlign={{ base: "end", md: "center" }}>
-                Um projeto feito NodeJs que encurta links como o bit.ly.
+                Um projeto feito Golang que encurta links como o bit.ly.
               </Text>
             </Stack>
           </Flex>
@@ -119,17 +129,15 @@ export default function Projects() {
 
             <Stack direction={{ base: "row", md: "column"}}>
               <Text flex={{ base: 1, md: 0 }} color={techTextColor}>Github</Text>
-              <Link as={LinkNext} href="https://github.com/marcioecom/go-webscraper">
-                <Text as={Link} color="blue.400">
-                  Código do projeto
-                </Text>
-              </Link>
+              <Text as={Link} href="https://github.com/marcioecom/url-shortener" color="blue.400">
+                Código do projeto
+              </Text>
             </Stack>
 
             <Stack direction={{ base: "row", md: "column"}}>
               <Text flex={{ base: 1, md: 0 }} color={techTextColor}>Descrição</Text>
               <Text maxW={{ base: "xs" }} textAlign={{ base: "end", md: "center" }}>
-                Um projeto feito Golang que encurta links como o bit.ly.
+                Um projeto feito NodeJs que encurta links como o bit.ly.
               </Text>
             </Stack>
           </Flex>
@@ -162,11 +170,9 @@ export default function Projects() {
 
             <Stack direction={{ base: "row", md: "column"}}>
               <Text flex={{ base: 1, md: 0 }} color={techTextColor}>Github</Text>
-              <Link as={LinkNext} href="https://github.com/marcioecom/video-transcoder">
-                <Text as={Link} color="blue.400">
-                  Código do projeto
-                </Text>
-              </Link>
+              <Text as={Link} href="https://github.com/marcioecom/video-transcoder" color="blue.400">
+                Código do projeto
+              </Text>
             </Stack>
 
             <Stack direction={{ base: "row", md: "column"}}>
