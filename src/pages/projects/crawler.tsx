@@ -7,6 +7,7 @@ import {
   Heading,
   HStack,
   IconButton,
+  Link,
   Skeleton,
   Stack,
   Text,
@@ -68,10 +69,12 @@ const Crawler: NextPage = () => {
 
         { jobs ? jobs.map((job) => (
           <Box key={job.id} marginY={8}>
-            <Heading size={"md"}>{job.title}</Heading>
+            <Heading size={"md"} as={Link} href="https://github.com/marcioecom/go-webscraper">
+              {job.title}
+            </Heading>
             <Text>Propostas: {job.offers} | Interessados: {job.interested}</Text>
             <Text marginY={2} fontSize={"md"}>{job.description.substring(0, 250)}...</Text>
-            <HStack>
+            <HStack gap={2} wrap={"wrap"}>
               { job.tags.map((tag) => (
                 <Badge key={tag} colorScheme='blue'>{tag}</Badge>
               ))}
@@ -79,7 +82,7 @@ const Crawler: NextPage = () => {
           </Box>
         )) : (
           <Stack marginY={8}>
-            <Skeleton height='30px' w={"sm"} />
+            <Skeleton height='30px' maxW={"sm"} />
             <Skeleton height='20px' />
             <Skeleton height='20px' />
           </Stack>
