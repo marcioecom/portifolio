@@ -33,7 +33,14 @@ function NavBar() {
     >
       <Container maxW="container.lg">
         <Flex align={"center"} justify={"space-between"}>
-          <Text>Logo</Text>
+          <Text
+            bgClip='text'
+            bgGradient="linear(to-r, #01BAEF,#20BF55)"
+            fontSize={'xl'}
+            fontWeight="bold"
+          >
+            Márcio Jr
+          </Text>
 
           <IconButton
             size={'md'}
