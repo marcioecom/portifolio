@@ -17,7 +17,9 @@ import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { FiArrowLeft } from "react-icons/fi"
+import Footer from "../../components/Footer";
 import Layout from "../../components/Layout";
+import Pagination from "../../components/Pagination";
 
 type Job = {
   id: number;
@@ -35,15 +37,32 @@ type Job = {
   deletedAt: Date | null;
 }
 
+type IData = {
+  length: number;
+  jobs: Job[];
+  totalJobs: number;
+}
+
 const Crawler: NextPage = () => {
   const router = useRouter();
-  const [jobs, setJobs] = useState<Job[]>();
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState<IData>();
 
   useEffect(() => {
-    fetch("https://api.marciojrdev.com/v1/jobs")
+    setLoading(true);
+    fetch(`https://api.marciojrdev.com/v1/jobs?page=${page}`)
       .then((res) => res.json())
-      .then((data) => setTimeout(() => setJobs(data), 500));
-  }, [])
+      .then((data) => {
+        setTimeout(() => {
+          setData(data);
+          setLoading(false);
+        }, 500);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }, [page])
 
   return (
     <Layout title="Crawler">
@@ -68,7 +87,28 @@ const Crawler: NextPage = () => {
         </Text>
         <Divider mt={8} />
 
-        { jobs ? jobs.map((job) => (
+        <Pagination
+          page={page}
+          setPage={setPage}
+          jobsLength={data?.length}
+          totalJobs={data?.totalJobs}
+        />
+
+        { data?.jobs && data.jobs.length === 0 && (
+          <Text mt={8} fontSize={'lg'} textAlign={"center"}>
+            Acabou os resultados.
+          </Text>
+        )}
+
+        { loading && Array.from({ length: 5 }).map((_, i) => (
+          <Stack key={i} marginY={8}>
+            <Skeleton height='30px' maxW={"sm"} />
+            <Skeleton height='20px' />
+            <Skeleton height='20px' />
+          </Stack>
+        ))}
+
+        { data?.jobs && data.jobs.map((job) => (
           <Box key={job.id} marginY={8}>
             <Heading size={"md"} as={Link} href={job.url}>
               {job.title}
@@ -81,14 +121,18 @@ const Crawler: NextPage = () => {
               ))}
             </HStack>
           </Box>
-        )) : (
-          <Stack marginY={8}>
-            <Skeleton height='30px' maxW={"sm"} />
-            <Skeleton height='20px' />
-            <Skeleton height='20px' />
-          </Stack>
-        ) }
+        ))}
+
+        { data?.jobs && data.jobs.length > 0 && (
+          <Pagination
+            page={page}
+            setPage={setPage}
+            jobsLength={data.length}
+          />
+        )}
       </Container>
+
+      <Footer />
     </Layout>
   );
 }
