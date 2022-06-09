@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Footer from "./Footer";
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -12,6 +13,7 @@ export default function Layout({ children, title }: LayoutProps) {
         <title>{ title }</title>
       </Head>
       { children }
+      <Footer />
     </>
   )
 }

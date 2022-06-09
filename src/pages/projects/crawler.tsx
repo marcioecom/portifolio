@@ -131,8 +131,6 @@ const Crawler: NextPage = () => {
           />
         )}
       </Container>
-
-      <Footer />
     </Layout>
   );
 }
