@@ -128,6 +128,7 @@ const Crawler: NextPage = () => {
             page={page}
             setPage={setPage}
             jobsLength={data.length}
+            totalJobs={data.totalJobs}
           />
         )}
       </Container>
