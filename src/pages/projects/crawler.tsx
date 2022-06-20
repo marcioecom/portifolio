@@ -83,7 +83,7 @@ const Crawler: NextPage = () => {
         <Heading textAlign={"center"}>Crawler</Heading>
         <Text textAlign={"center"}>Freelas retirados do site 99Freelas</Text>
         <Text textAlign={"center"}>
-          A cada 1 hora o crawler busca novos jobs e atualiza os dados mostrados nessa página.
+          A cada 12 hora o crawler busca novos jobs e atualiza os dados mostrados nessa página.
         </Text>
         <Divider mt={8} />
 
