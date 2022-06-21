@@ -142,6 +142,19 @@ export default function Projects() {
               </Text>
             </Stack>
           </Flex>
+          <Center mt={6}>
+            <LinkNext href="/projects/url-shortener">
+              <Button
+                bgGradient="linear(to-l, #01BAEF,#20BF55)"
+                _hover={{
+                  bgGradient: 'linear(to-r, teal.500, green.500)',
+                }}
+                color={"white"}
+              >
+                Ver Demo
+              </Button>
+            </LinkNext>
+          </Center>
         </AccordionPanel>
       </AccordionItem>
 
