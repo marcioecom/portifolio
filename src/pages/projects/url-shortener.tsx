@@ -76,7 +76,11 @@ const UrlShortener: NextPage = () => {
         bg={useColorModeValue("rgba(244, 247, 254, 0.2)", "rgba(26, 32, 44, 0.2)")}
       >
         <Container maxW="container.lg">
-          <IconButton onClick={() => router.back()} icon={<FiArrowLeft size={24} />} aria-label="back-to-previous-page"/>
+          <IconButton
+            onClick={() => router.back()}
+            icon={<FiArrowLeft size={24} />}
+            aria-label="back-to-previous-page"
+          />
         </Container>
       </Flex>
 
