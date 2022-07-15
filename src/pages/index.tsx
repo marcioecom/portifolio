@@ -16,16 +16,28 @@ import MysqlImg from '../assets/mysql.svg'
 import PostgresImg from '../assets/postgres.svg'
 import MongodbImg from '../assets/mongodb.svg'
 import GolangImg from '../assets/golang.svg'
+import JestImg from '../assets/jest.svg'
+import NextImg from '../assets/nextjs.svg'
+import GitImg from '../assets/git.svg'
+import GithubImg from '../assets/github.svg'
+import HerokuImg from '../assets/heroku.svg'
+import VercelImg from '../assets/vercel.svg'
 
 const skills = [
-  { id: "1", name: "Javascript", src: JsImg },
-  { id: "2", name: "Typescript", src: TsImg },
-  { id: "3", name: "Nodejs", src: NodeImg },
-  { id: "4", name: "ReactJs", src: ReactImg },
-  { id: "5", name: "MySQL", src: MysqlImg },
-  { id: "6", name: "Postgres", src: PostgresImg },
-  { id: "7", name: "MongoDB", src: MongodbImg },
-  { id: "8", name: "Golang", src: GolangImg },
+  { id: "1", name: "Git", src: GitImg },
+  { id: "2", name: "Github", src: GithubImg },
+  { id: "3", name: "Javascript", src: JsImg },
+  { id: "4", name: "Typescript", src: TsImg },
+  { id: "5", name: "ReactJs", src: ReactImg },
+  { id: "6", name: "NextJs", src: NextImg },
+  { id: "7", name: "Nodejs", src: NodeImg },
+  { id: "8", name: "Jest", src: JestImg },
+  { id: "9", name: "MySQL", src: MysqlImg },
+  { id: "10", name: "Postgres", src: PostgresImg },
+  { id: "11", name: "MongoDB", src: MongodbImg },
+  { id: "12", name: "Golang", src: GolangImg },
+  { id: "13", name: "Heroku", src: HerokuImg },
+  { id: "14", name: "Vercel", src: VercelImg },
 ]
 
 const Home: NextPage = () => {
@@ -62,7 +74,7 @@ const Home: NextPage = () => {
                 <Text color={skillTextColor} fontSize={"lg"}>{skill.name}</Text>
 
                 <Box boxSize={"100px"}>
-                  <NextImage src={skill.src} alt={`logo ${skill.name}`}  />
+                  <NextImage src={skill.src} alt={`logo ${skill.name}`} style={{ flex: 1 }} />
                 </Box>
               </VStack>
             ))}
