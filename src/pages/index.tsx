@@ -4,7 +4,6 @@ import NextImage from 'next/image';
 
 import Layout from '../components/Layout'
 import NavBar from '../components/NavBar';
-import Footer from '../components/Footer';
 import Projects from '../components/Projects';
 
 import Illustration from '../assets/illustration.png'
@@ -46,7 +45,7 @@ const Home: NextPage = () => {
   return (
     <Layout title="Home">
       <NavBar />
-      <Container pt={{ base: 32, md: 36 }} maxW="container.lg">
+      <Container pt={{ base: 32, md: 36 }} maxW="container.lg" id="Sobre">
         <Flex direction={{ base: "column", md: "row" }} wrap={"wrap"} align="center" justify="space-between">
           <VStack align={"left"} flex={1}>
             <Text fontSize={"xl"}>Web Developer FullStack 👋</Text>
@@ -63,7 +62,7 @@ const Home: NextPage = () => {
           </Flex>
         </Flex>
 
-        <Box mt={32} id="Skills">
+        <Box pt={32} id="Skills">
           <Heading size={"2xl"} textAlign="center" bgClip='text' bgGradient="linear(to-l, #01BAEF,#20BF55)">
             Skills
           </Heading>
