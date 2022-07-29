@@ -22,7 +22,7 @@ import { api } from "../../services/api";
 
 const UrlShortener: NextPage = () => {
   const toast = useToast();
-  const urlRegex = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/;
+  const urlRegex = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/;
   const router = useRouter();
   const [url, setUrl] = useState('');
   const [shortUrl, setShortUrl] = useState('');
@@ -32,17 +32,16 @@ const UrlShortener: NextPage = () => {
   async function handleUrlShortener() {
     try {
       setLoading(true);
-      const { data } = await api.post('/v1/goly', {
-        goly: "aaaaaaa",
-        redirect: url,
-        random: true,
+      const { data } = await api.post('/urls', {
+        shortUrl,
+        redirectUrl: url,
       });
-      setShortUrl(`${process.env.NEXT_PUBLIC_APP_URL}/r/${data.goly}`);
+      setShortUrl(`${process.env.NEXT_PUBLIC_APP_URL}/r/${data.shortUrl}`);
     } catch (err: any) {
       toast({
         position: "top-right",
         title: "Erro ao encurtar URL",
-        description: "Tente novamente mais tarde",
+        description: err.response.data.message.issues[0].message,
         status: "error",
         duration: 3000,
         isClosable: true,
@@ -95,6 +94,7 @@ const UrlShortener: NextPage = () => {
               <FiLink size={20} />
             </InputLeftElement>
             <Input
+              placeholder="http://example.com"
               value={url}
               onChange={(e) => setUrl(e.target.value)}
             />
