@@ -2,23 +2,40 @@ import {
   Box,
   Button,
   Container,
-  Divider,
   Flex,
   Heading,
   IconButton,
   Input,
   InputGroup,
   InputLeftElement,
+  ListItem,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
   Text,
+  UnorderedList,
   useColorModeValue,
   useToast,
+  VStack,
 } from "@chakra-ui/react";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { FiArrowLeft, FiCopy, FiLink } from "react-icons/fi"
+import { FiArrowLeft, FiCopy, FiLink, FiSearch } from "react-icons/fi"
 import Layout from "../../components/Layout";
+import CustomButton from "../../components/Button";
 import { api } from "../../services/api";
+
+type Url = {
+  id: string;
+  shortUrl: string;
+  redirectUrl: string;
+  clicks: number;
+  createdAt: Date;
+  updatedAt: Date;
+}
 
 const UrlShortener: NextPage = () => {
   const toast = useToast();
@@ -26,6 +43,8 @@ const UrlShortener: NextPage = () => {
   const router = useRouter();
   const [url, setUrl] = useState('');
   const [shortUrl, setShortUrl] = useState('');
+  const [urlId, setUrlId] = useState('');
+  const [urlData, setUrlData] = useState<Url>();
   const [loading, setLoading] = useState(false);
   const borderColor = useColorModeValue("#E6E6E6", "#3d3d3d")
 
@@ -42,6 +61,26 @@ const UrlShortener: NextPage = () => {
         position: "top-right",
         title: "Erro ao encurtar URL",
         description: err.response.data.message.issues[0].message,
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      })
+      console.log(err.response.data);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function handleGetUrl() {
+    try {
+      setLoading(true);
+      const { data } = await api.get(`/urls/${urlId}?info=true`);
+      setUrlData(data);
+    } catch (err: any) {
+      toast({
+        position: "top-right",
+        title: "Erro ao buscar URL",
+        description: err.response.data.message,
         status: "error",
         duration: 3000,
         isClosable: true,
@@ -86,64 +125,100 @@ const UrlShortener: NextPage = () => {
       <Container pt={{ base: 20, md: 24 }} maxW="container.lg">
         <Heading textAlign={"center"}>Url Shortener</Heading>
         <Text textAlign={"center"}>Encurtador de url</Text>
-        <Divider mt={8} />
 
         <Box maxW="2xl" marginX={"auto"} mt={8}>
-          <InputGroup>
-            <InputLeftElement pointerEvents='none'>
-              <FiLink size={20} />
-            </InputLeftElement>
-            <Input
-              placeholder="http://example.com"
-              value={url}
-              onChange={(e) => setUrl(e.target.value)}
-            />
-            <Button
-              ml={2}
-              bgGradient="linear(to-l, #01BAEF,#20BF55)"
-              _hover={{
-                bgGradient: 'linear(to-r, teal.500, green.500)',
-              }}
-              _active={{
-                bgGradient: 'linear(to-r, teal.500, green.500)',
-              }}
-              disabled={!urlRegex.test(url)}
-              isLoading={loading}
-              onClick={handleUrlShortener}
-              color={"white"}>
-              Encurtar
-            </Button>
-          </InputGroup>
+          <Tabs isFitted>
+            <TabList>
+              <Tab>Criar</Tab>
+              <Tab>Informações</Tab>
+            </TabList>
+            <TabPanels>
+              <TabPanel>
+                <Heading size="sm" textAlign="center" mb={4}>
+                  Digite uma url que deseje encurtar
+                </Heading>
+                <InputGroup>
+                  <InputLeftElement pointerEvents='none'>
+                    <FiLink size={20} />
+                  </InputLeftElement>
+                  <Input
+                    placeholder="http://example.com"
+                    value={url}
+                    onChange={(e) => setUrl(e.target.value)}
+                  />
+                  <CustomButton
+                    ml={2}
+                    disabled={!urlRegex.test(url)}
+                    isLoading={loading}
+                    onClick={handleUrlShortener}
+                  >
+                    Encurtar
+                  </CustomButton>
+                </InputGroup>
 
-          { shortUrl && (
-            <Flex
-              overflow={"hidden"}
-              margin="auto"
-              mt={8}
-              borderRadius={8}
-              cursor={"pointer"}
-              onClick={handleCopyUrl}
-              borderWidth={1}
-              borderColor={borderColor}
-              borderStyle={"solid"}
-            >
-              <Box
-                bgGradient="linear(to-l, #01BAEF,#20BF55)"
-                p={3}
-                borderTopLeftRadius={8}
-                borderBottomLeftRadius={8}
-              >
-                <FiCopy size={20} color={"#fff"}/>
-              </Box>
-              <Text
-                flex={1}
-                paddingX={4}
-                alignSelf="center"
-              >
-                {shortUrl}
-              </Text>
-            </Flex>
-          )}
+                { shortUrl && (
+                  <Flex
+                    overflow={"hidden"}
+                    margin="auto"
+                    mt={8}
+                    borderRadius={8}
+                    cursor={"pointer"}
+                    onClick={handleCopyUrl}
+                    borderWidth={1}
+                    borderColor={borderColor}
+                    borderStyle={"solid"}
+                  >
+                    <Box
+                      bgGradient="linear(to-l, #01BAEF,#20BF55)"
+                      p={3}
+                      borderTopLeftRadius={8}
+                      borderBottomLeftRadius={8}
+                    >
+                      <FiCopy size={20} color={"#fff"}/>
+                    </Box>
+                    <Text
+                      flex={1}
+                      paddingX={4}
+                      alignSelf="center"
+                    >
+                      {shortUrl}
+                    </Text>
+                  </Flex>
+                )}
+              </TabPanel>
+              <TabPanel>
+                <Heading size="sm" textAlign="center" mb={4}>
+                  Digite o identificador da url que deseje ver as informações
+                </Heading>
+                <InputGroup>
+                  <InputLeftElement pointerEvents='none'>
+                    <FiSearch size={20} />
+                  </InputLeftElement>
+                  <Input
+                    value={urlId}
+                    onChange={(e) => setUrlId(e.target.value)}
+                  />
+                  <CustomButton
+                    ml={2}
+                    disabled={urlId.length < 10}
+                    isLoading={loading}
+                    onClick={handleGetUrl}
+                  >
+                    Buscar
+                  </CustomButton>
+                </InputGroup>
+
+                { urlData && (
+                  <UnorderedList mt={4}>
+                    <ListItem>Id: { urlData.shortUrl }</ListItem>
+                    <ListItem>Url de destino: { urlData.redirectUrl }</ListItem>
+                    <ListItem>Clicks: { urlData.clicks }</ListItem>
+                    <ListItem>Data de criação: { new Date(urlData.createdAt).toLocaleDateString("pt-br") }</ListItem>
+                  </UnorderedList>
+                )}
+              </TabPanel>
+            </TabPanels>
+          </Tabs>
         </Box>
       </Container>
     </Layout>
