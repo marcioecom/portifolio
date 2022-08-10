@@ -17,7 +17,6 @@ import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { FiArrowLeft } from "react-icons/fi"
-import Footer from "../../components/Footer";
 import Layout from "../../components/Layout";
 import Pagination from "../../components/Pagination";
 
@@ -51,6 +50,7 @@ const Crawler: NextPage = () => {
 
   useEffect(() => {
     setLoading(true);
+    setData(prev => ({ ...prev, jobs: [] }) as IData)
     fetch(`https://api.marciojrdev.com/v1/jobs?page=${page}`)
       .then((res) => res.json())
       .then((data) => {
@@ -94,13 +94,13 @@ const Crawler: NextPage = () => {
           totalJobs={data?.totalJobs}
         />
 
-        { data?.jobs && data.jobs.length === 0 && (
+        { data?.jobs.length === 0 && !loading && (
           <Text mt={8} fontSize={'lg'} textAlign={"center"}>
             Acabou os resultados.
           </Text>
         )}
 
-        { loading && Array.from({ length: 5 }).map((_, i) => (
+        { loading && Array.from({ length: 10 }).map((_, i) => (
           <Stack key={i} marginY={8}>
             <Skeleton height='30px' maxW={"sm"} />
             <Skeleton height='20px' />
@@ -114,7 +114,13 @@ const Crawler: NextPage = () => {
               {job.title}
             </Heading>
             <Text>Propostas: {job.offers} | Interessados: {job.interested}</Text>
-            <Text marginY={2} fontSize={"md"}>{job.description.substring(0, 250)}...</Text>
+            <Text marginY={2} fontSize={"md"}>
+              {
+                job.description.length < 250
+                ? job.description
+                : job.description.substring(0, 250) + "..."
+              }
+            </Text>
             <HStack gap={2} wrap={"wrap"}>
               { job.tags.map((tag) => (
                 <Badge key={tag} colorScheme='blue'>{tag}</Badge>
